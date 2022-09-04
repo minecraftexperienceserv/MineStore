@@ -9,9 +9,9 @@ public class Command {
     public static HashMap<String, ArrayList<String>> runLater;
 
     public static void online(String command) {
-        Bukkit.getScheduler().runTask(Bukkit.getPluginManager().getPlugin("MineStore"), () -> {
+        Bukkit.getScheduler().runTaskLater(Bukkit.getPluginManager().getPlugin("MineStore"), () -> {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-        });
+        }, 100L);
     }
 
     public static void offline(String username, String command) {

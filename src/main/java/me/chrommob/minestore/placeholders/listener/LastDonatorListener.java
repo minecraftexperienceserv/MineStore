@@ -13,11 +13,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
 
 public class LastDonatorListener {
     private static HttpsURLConnection urlConnection;
+
     @SneakyThrows
     public static void run() {
         if (!(Config.getApiUrl().equalsIgnoreCase("hard_api_key_here") || Config.getApiUrl().equalsIgnoreCase(""))) {
@@ -28,11 +28,11 @@ public class LastDonatorListener {
                 InputStream inputStream = urlConnection.getInputStream();
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 Gson gson = new Gson();
-                Type listType = new TypeToken<List<LastDonator>>() {}.getType();
+                Type listType = new TypeToken<List<LastDonator>>() {
+                }.getType();
                 PlaceHolderData.setLastDonatorsObjects(gson.fromJson(inputStreamReader, listType));
                 PlaceHolderData.createLastMap();
-            }
-                catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
@@ -43,11 +43,12 @@ public class LastDonatorListener {
                 InputStream inputStream = urlConnection.getInputStream();
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 Gson gson = new Gson();
-                Type listType = new TypeToken<List<LastDonator>>() {}.getType();
+                Type listType = new TypeToken<List<LastDonator>>() {
+                }.getType();
                 PlaceHolderData.setLastDonatorsObjects(gson.fromJson(inputStreamReader, listType));
                 PlaceHolderData.createLastMap();
             } catch (Exception e) {
-                if (e instanceof ClassCastException){
+                if (e instanceof ClassCastException) {
                     Bukkit.getLogger().info("Please use HTTPS instead of HTTP.");
                 } else {
                     e.printStackTrace();

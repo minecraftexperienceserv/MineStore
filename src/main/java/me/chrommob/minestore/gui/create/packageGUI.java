@@ -1,10 +1,11 @@
 package me.chrommob.minestore.gui.create;
 
-import me.chrommob.minestore.gui.Currency;
-import me.chrommob.minestore.gui.objects.PackagesType;
 import me.chrommob.minestore.MineStore;
 import me.chrommob.minestore.data.Config;
 import me.chrommob.minestore.data.GuiData;
+import me.chrommob.minestore.gui.Currency;
+import me.chrommob.minestore.gui.objects.PackagesType;
+import me.chrommob.minestore.util.HashMapSortInt;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,7 +15,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import me.chrommob.minestore.util.HashMapSortInt;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +58,7 @@ public class packageGUI {
                 ItemStack item = new ItemStack(material);
                 if (entry.getValue() == -10) {
                     try {
-                    item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
+                        item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -69,15 +69,18 @@ public class packageGUI {
                 double price = ((int) (doublePrice * 100)) / 100.0;
                 try {
                     lore.add(ChatColor.translateAlternateColorCodes('&', Config.getItemPrice().replace("%minestore_item_price%", price + "").replace("%currency%", Currency.getCurrency())));
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
                 try {
-                lore.add(ChatColor.translateAlternateColorCodes('&', Config.getItemDescription().replace("%minestore_item_description%", data.getItem_lore())));
-                } catch (Exception ignored) {}
+                    lore.add(ChatColor.translateAlternateColorCodes('&', Config.getItemDescription().replace("%minestore_item_description%", data.getItem_lore())));
+                } catch (Exception ignored) {
+                }
                 meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 meta.setLore(lore);
                 try {
                     meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', Config.getItemName().replace("%minestore_item_name%", data.getName())));
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
                 item.setItemMeta(meta);
                 GUI.setItem(sorting, item);
                 sorting++;

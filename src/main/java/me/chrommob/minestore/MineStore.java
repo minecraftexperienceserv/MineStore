@@ -7,8 +7,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.Getter;
-import me.chrommob.minestore.commandexecution.Command;
+import me.chrommob.minestore.commandexecution.JoinQuitListener;
 import me.chrommob.minestore.commands.Buy;
+import me.chrommob.minestore.commands.PunishmentManager;
 import me.chrommob.minestore.commands.Reload;
 import me.chrommob.minestore.commands.Store;
 import me.chrommob.minestore.data.Config;
@@ -17,8 +18,6 @@ import me.chrommob.minestore.mysql.MySQLData;
 import me.chrommob.minestore.mysql.connection.ConnectionPool;
 import me.chrommob.minestore.mysql.data.UserManager;
 import me.chrommob.minestore.placeholders.PlaceholderHook;
-import me.chrommob.minestore.commands.PunishmentManager;
-import me.chrommob.minestore.commandexecution.JoinQuitListener;
 import me.chrommob.minestore.util.Mode;
 import me.chrommob.minestore.util.Runnable;
 import me.chrommob.minestore.websocket.Socket;
@@ -102,26 +101,24 @@ public final class MineStore extends JavaPlugin {
         if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
             Bukkit.getLogger().info("[MineStore] Vault found!");
             Config.setVaultPresent(false);
-        }
-        else {
+        } else {
             Config.setVaultPresent(true);
         }
     }
 
-    private void NettyServer(int port) throws Exception
-    {
+    private void NettyServer(int port) throws Exception {
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
         EventLoopGroup worker = new NioEventLoopGroup();
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
-            getLogger().info("Starting Server at " + port);
+        getLogger().info("Starting Server at " + port);
 
-            serverBootstrap.group(eventLoopGroup, worker)
-                    .channel(NioServerSocketChannel.class)
-                    .childHandler(new Socket())
-                    .childOption(ChannelOption.SO_KEEPALIVE, true);
+        serverBootstrap.group(eventLoopGroup, worker)
+                .channel(NioServerSocketChannel.class)
+                .childHandler(new Socket())
+                .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-            serverBootstrap.bind(port).sync();
+        serverBootstrap.bind(port).sync();
     }
 
     public void loadConfig() {

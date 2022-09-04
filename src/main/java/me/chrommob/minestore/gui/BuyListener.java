@@ -17,6 +17,7 @@ import java.util.List;
 
 public class BuyListener {
     private static HttpsURLConnection urlConnection;
+
     @SneakyThrows
     public static void run() {
         String link = Config.getBuyUrl();
@@ -25,11 +26,12 @@ public class BuyListener {
             urlConnection = (HttpsURLConnection) url.openConnection();
             InputStream inputStream = urlConnection.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            Type listType = new TypeToken<List<ListObject>>() {}.getType();
+            Type listType = new TypeToken<List<ListObject>>() {
+            }.getType();
             GuiData.setData(new Gson().fromJson(inputStreamReader, listType));
             GuiData.createSub();
         } catch (Exception e) {
-            if (e instanceof ClassCastException){
+            if (e instanceof ClassCastException) {
                 Bukkit.getLogger().info("Please use HTTPS instead of HTTP.");
             } else {
                 e.printStackTrace();

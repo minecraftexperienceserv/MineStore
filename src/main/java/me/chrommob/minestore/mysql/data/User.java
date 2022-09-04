@@ -1,7 +1,5 @@
 package me.chrommob.minestore.mysql.data;
 
-import java.util.UUID;
-
 import lombok.Getter;
 import lombok.Setter;
 import me.chrommob.minestore.MineStore;
@@ -9,6 +7,8 @@ import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
+
+import java.util.UUID;
 
 @Getter
 @Setter

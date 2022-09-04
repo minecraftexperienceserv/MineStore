@@ -13,6 +13,6 @@ public class Store extends BaseCommand {
     @Default
     @CommandPermission("ms.store")
     private void onBuy(CommandSender sender) {
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',Config.getStoreMessage()));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.getStoreMessage()));
     }
 }

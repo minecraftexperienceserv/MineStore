@@ -27,11 +27,12 @@ public class TopDonoListener {
                 InputStream inputStream = urlConnection.getInputStream();
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 Gson gson = new Gson();
-                Type listType = new TypeToken<List<TopDonoObjects>>() {}.getType();
+                Type listType = new TypeToken<List<TopDonoObjects>>() {
+                }.getType();
                 PlaceHolderData.setTopDonoObjects(gson.fromJson(inputStreamReader, listType));
                 PlaceHolderData.createTopMap();
             } catch (Exception e) {
-                if (e instanceof ClassCastException){
+                if (e instanceof ClassCastException) {
                     Bukkit.getLogger().info("Please use HTTPS instead of HTTP.");
                 } else {
                     e.printStackTrace();
@@ -45,11 +46,12 @@ public class TopDonoListener {
                 InputStream inputStream = urlConnection.getInputStream();
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 Gson gson = new Gson();
-                Type listType = new TypeToken<List<TopDonoObjects>>() {}.getType();
+                Type listType = new TypeToken<List<TopDonoObjects>>() {
+                }.getType();
                 PlaceHolderData.setTopDonoObjects(gson.fromJson(inputStreamReader, listType));
                 PlaceHolderData.createTopMap();
             } catch (Exception e) {
-                if (e instanceof ClassCastException){
+                if (e instanceof ClassCastException) {
                     Bukkit.getLogger().info("Please use HTTPS instead of HTTP.");
                 } else {
                     e.printStackTrace();

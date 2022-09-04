@@ -7,6 +7,7 @@ import me.chrommob.minestore.placeholders.objects.LastDonator;
 import me.chrommob.minestore.placeholders.objects.TopDonoObjects;
 import me.chrommob.minestore.util.HashMapSort;
 import me.chrommob.minestore.util.HashMapSortDate;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,16 +27,16 @@ public class PlaceHolderData {
     private static HashMap<String, Double> donators = new HashMap<>();
 
     @Getter
-    private static HashMap<Integer, Double> topDonations = new HashMap<>();
+    private static final HashMap<Integer, Double> topDonations = new HashMap<>();
 
     @Getter
-    private static HashMap<Integer, String> topDonators = new HashMap<>();
+    private static final HashMap<Integer, String> topDonators = new HashMap<>();
 
     @Getter
-    private static HashMap<Integer, Double> lastDonatorPrice = new HashMap<>();
+    private static final HashMap<Integer, Double> lastDonatorPrice = new HashMap<>();
 
     @Getter
-    private static HashMap<Integer, String> lastDonator = new HashMap<>();
+    private static final HashMap<Integer, String> lastDonator = new HashMap<>();
 
     @Getter
     @Setter

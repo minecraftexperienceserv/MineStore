@@ -11,10 +11,12 @@ import org.bukkit.entity.Player;
 
 @CommandAlias("buy")
 public class Buy extends BaseCommand {
-    private MineStore plugin;
+    private final MineStore plugin;
+
     public Buy(MineStore plugin) {
         this.plugin = plugin;
     }
+
     @Default
     @CommandPermission("ms.buy")
     private void onBuy(CommandSender sender) {

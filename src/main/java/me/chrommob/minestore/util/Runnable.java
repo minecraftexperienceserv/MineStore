@@ -9,10 +9,7 @@ import me.chrommob.minestore.mysql.connection.ConnectionPool;
 import me.chrommob.minestore.placeholders.listener.DonationGoalListener;
 import me.chrommob.minestore.placeholders.listener.LastDonatorListener;
 import me.chrommob.minestore.placeholders.listener.TopDonoListener;
-import me.chrommob.minestore.placeholders.objects.DonationGoal;
-import me.chrommob.minestore.placeholders.objects.LastDonator;
 import me.chrommob.minestore.weblistener.Listener;
-import org.bukkit.Bukkit;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -21,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 //Runnable to execute plugin functions
 public class Runnable {
     private static final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
     public static void runListener(String load) {
         executor.scheduleAtFixedRate(() -> {
             if (load.equalsIgnoreCase("web") && Config.isEmpty()) {
@@ -39,11 +37,11 @@ public class Runnable {
                 MineStore.instance.getUserManager().updateAll();
                 ConnectionPool.updateTable();
             }
-        } , 0, 30, TimeUnit.SECONDS);
+        }, 0, 30, TimeUnit.SECONDS);
         executor.scheduleAtFixedRate(() -> {
             if (load.equalsIgnoreCase("web") && !Config.isEmpty()) {
                 Listener.run();
             }
-        } , 0, 1, TimeUnit.SECONDS);
+        }, 0, 1, TimeUnit.SECONDS);
     }
 }

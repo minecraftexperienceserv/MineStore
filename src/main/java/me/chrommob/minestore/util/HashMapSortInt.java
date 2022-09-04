@@ -1,7 +1,6 @@
 package me.chrommob.minestore.util;
 
 import java.util.*;
-import java.lang.*;
 
 public class HashMapSortInt {
     public static HashMap<Integer, Integer>

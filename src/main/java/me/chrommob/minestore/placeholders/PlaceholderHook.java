@@ -1,7 +1,6 @@
 package me.chrommob.minestore.placeholders;
 
 import me.chrommob.minestore.MineStore;
-import me.chrommob.minestore.data.GuiData;
 import me.chrommob.minestore.data.PlaceHolderData;
 import me.chrommob.minestore.gui.Currency;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -39,27 +38,27 @@ public class PlaceholderHook extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player p, String params) {
         Bukkit.getLogger().info("PlaceholderAPI: " + params);
-        if(params.contains("top_donator_username_")) {
+        if (params.contains("top_donator_username_")) {
             int arg = Integer.parseInt(params.replaceFirst("top_donator_username_", ""));
             try {
                 return PlaceHolderData.getTopDonators().get(arg);
             } catch (Exception ignored) {
             }
         }
-        if(params.contains("top_donator_amount_")) {
+        if (params.contains("top_donator_amount_")) {
             int arg = Integer.parseInt(params.replaceFirst("top_donator_amount_", ""));
             try {
                 return PlaceHolderData.getTopDonations().get(arg).toString();
             } catch (Exception ignored) {
             }
         }
-        if(params.contains("donation_goal")) {
+        if (params.contains("donation_goal")) {
             try {
                 return (PlaceHolderData.getDonationGoal() + "");
             } catch (Exception ignored) {
             }
         }
-        if(params.contains("donation_goal_sum")) {
+        if (params.contains("donation_goal_sum")) {
             try {
                 return (PlaceHolderData.getDonationGoalSum() + "");
             } catch (Exception ignored) {

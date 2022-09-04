@@ -4,7 +4,6 @@ import me.chrommob.minestore.MineStore;
 import me.chrommob.minestore.commands.PunishmentManager;
 import me.chrommob.minestore.data.Config;
 import me.chrommob.minestore.mysql.MySQLData;
-import me.chrommob.minestore.mysql.data.UserManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,11 +23,11 @@ public class JoinQuitListener implements Listener {
             if (runLater.get(name).isEmpty()) {
                 runLater.remove(name);
             } else {
-                Bukkit.getScheduler().runTask(Bukkit.getPluginManager().getPlugin("MineStore"), () -> {
+                Bukkit.getScheduler().runTaskLater(Bukkit.getPluginManager().getPlugin("MineStore"), () -> {
                     runLater.get(name).forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
                     runLater.remove(name);
                     PunishmentManager.update();
-                });
+                }, 100L);
             }
         } catch (Exception ignored) {
         }
@@ -38,6 +37,7 @@ public class JoinQuitListener implements Listener {
             MineStore.instance.getUserManager().createProfile(uuid, name);
         }
     }
+
     @EventHandler
     public void onPlayerQuit(final PlayerQuitEvent event) {
         if (Config.isVaultPresent() && MySQLData.isEnabled()) {

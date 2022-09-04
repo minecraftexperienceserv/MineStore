@@ -47,7 +47,7 @@ public class Currency {
                 }
                 currency = stringBuilder.toString();
             } catch (Exception e) {
-                if (e instanceof ClassCastException){
+                if (e instanceof ClassCastException) {
                     Bukkit.getLogger().info("Please use HTTPS instead of HTTP.");
                 } else {
                     e.printStackTrace();

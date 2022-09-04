@@ -2,7 +2,6 @@ package me.chrommob.minestore.weblistener;
 
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
-import me.chrommob.minestore.MineStore;
 import me.chrommob.minestore.commandexecution.Command;
 import me.chrommob.minestore.data.Config;
 import me.chrommob.minestore.weblistener.objects.WebListenerObjects;
