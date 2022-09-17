@@ -18,14 +18,15 @@ import static me.chrommob.minestore.commandexecution.Command.runLater;
 public class JoinQuitListener implements Listener {
     @EventHandler
     public void onPlayerJoin(final PlayerJoinEvent event) {
+
         try {
-            String name = event.getPlayer().getName();
-            if (runLater.get(name).isEmpty()) {
-                runLater.remove(name);
+            String name = event.getPlayer().getName().toLowerCase();
+            if (runLater.get(name.toLowerCase()).isEmpty()) {
+                runLater.remove(name.toLowerCase());
             } else {
                 Bukkit.getScheduler().runTaskLater(Bukkit.getPluginManager().getPlugin("MineStore"), () -> {
-                    runLater.get(name).forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
-                    runLater.remove(name);
+                    runLater.get(name.toLowerCase()).forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
+                    runLater.remove(name.toLowerCase());
                     PunishmentManager.update();
                 }, 100L);
             }

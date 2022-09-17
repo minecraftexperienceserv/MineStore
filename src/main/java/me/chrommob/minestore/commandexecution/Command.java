@@ -15,6 +15,6 @@ public class Command {
     }
 
     public static void offline(String username, String command) {
-        Manager.add(username, command);
+        Manager.add(username.toLowerCase(), command);
     }
 }
